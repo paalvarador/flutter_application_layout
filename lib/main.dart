@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(const MyApp());
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +19,15 @@ class MainApp extends StatelessWidget {
         body: const SingleChildScrollView(
           child: Column(
             children: [
+              ImageSection(image: "../images/lake.jpg"),
               TitleSection(
                   name: "Universidad Técnica Particular de Loja",
                   location: "Loja, Ecuador"),
               ButtonSection(),
+              TextSection(
+                description:
+                    'Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese Alps. Situated 1,578 meters above sea level, it is one of the larger Alpine Lakes. A gondola ride from Kandersteg, followed by a half-hour walk through pastures and pine forest, leads you to the lake, which warms to 20 degrees Celsius in the summer. Activities enjoyed here include rowing, and riding the summer toboggan run.',
+              )
             ],
           ),
         ),
@@ -132,6 +137,39 @@ class ButtonWithText extends StatelessWidget {
               )),
         )
       ],
+    );
+  }
+}
+
+class TextSection extends StatelessWidget {
+  final String description;
+
+  const TextSection({super.key, required this.description});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(32),
+      child: Text(
+        description,
+        softWrap: true,
+      ),
+    );
+  }
+}
+
+class ImageSection extends StatelessWidget {
+  final String image;
+
+  const ImageSection({super.key, required this.image});
+
+  @override
+  Widget build(BuildContext context) {
+    return Image.asset(
+      image,
+      width: 600,
+      height: 240,
+      fit: BoxFit.cover,
     );
   }
 }
